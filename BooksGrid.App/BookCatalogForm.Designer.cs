@@ -29,18 +29,83 @@
         private void InitializeComponent()
         {
             this.booksDataGridView = new System.Windows.Forms.DataGridView();
+            this.bookTitleColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bookAuthorColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bookYearColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bookPriceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bookInStockColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.bookBindingColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.bookDescriptionColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.booksDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // booksDataGridView
             // 
-            this.booksDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.booksDataGridView.AllowUserToAddRows = false;
+            this.booksDataGridView.AllowUserToDeleteRows = false;
+            this.booksDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.booksDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.booksDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.booksDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.bookTitleColumn,
+            this.bookAuthorColumn,
+            this.bookYearColumn,
+            this.bookPriceColumn,
+            this.bookInStockColumn,
+            this.bookBindingColumn,
+            this.bookDescriptionColumn});
             this.booksDataGridView.Location = new System.Drawing.Point(12, 161);
             this.booksDataGridView.Name = "booksDataGridView";
             this.booksDataGridView.Size = new System.Drawing.Size(760, 388);
             this.booksDataGridView.TabIndex = 0;
+            this.booksDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.booksDataGridView_CellContentClick);
+            // 
+            // bookTitleColumn
+            // 
+            this.bookTitleColumn.DataPropertyName = "Title";
+            this.bookTitleColumn.HeaderText = "Title";
+            this.bookTitleColumn.Name = "bookTitleColumn";
+            // 
+            // bookAuthorColumn
+            // 
+            this.bookAuthorColumn.DataPropertyName = "Author";
+            this.bookAuthorColumn.HeaderText = "Author";
+            this.bookAuthorColumn.Name = "bookAuthorColumn";
+            // 
+            // bookYearColumn
+            // 
+            this.bookYearColumn.DataPropertyName = "Year";
+            this.bookYearColumn.HeaderText = "Year";
+            this.bookYearColumn.Name = "bookYearColumn";
+            // 
+            // bookPriceColumn
+            // 
+            this.bookPriceColumn.DataPropertyName = "Price";
+            this.bookPriceColumn.HeaderText = "Price";
+            this.bookPriceColumn.Name = "bookPriceColumn";
+            // 
+            // bookInStockColumn
+            // 
+            this.bookInStockColumn.DataPropertyName = "InStock";
+            this.bookInStockColumn.HeaderText = "In Stock";
+            this.bookInStockColumn.Name = "bookInStockColumn";
+            // 
+            // bookBindingColumn
+            // 
+            this.bookBindingColumn.DataPropertyName = "Binding";
+            this.bookBindingColumn.HeaderText = "Binding";
+            this.bookBindingColumn.Name = "bookBindingColumn";
+            // 
+            // bookDescriptionColumn
+            // 
+            this.bookDescriptionColumn.HeaderText = "Description";
+            this.bookDescriptionColumn.Name = "bookDescriptionColumn";
+            this.bookDescriptionColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.bookDescriptionColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.bookDescriptionColumn.Text = "View";
+            this.bookDescriptionColumn.UseColumnTextForButtonValue = true;
             // 
             // bookCatalogForm
             // 
@@ -58,6 +123,13 @@
         #endregion
 
         private System.Windows.Forms.DataGridView booksDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bookTitleColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bookAuthorColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bookYearColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bookPriceColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn bookInStockColumn;
+        private System.Windows.Forms.DataGridViewComboBoxColumn bookBindingColumn;
+        private System.Windows.Forms.DataGridViewButtonColumn bookDescriptionColumn;
     }
 }
 
