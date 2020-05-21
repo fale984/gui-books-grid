@@ -28,7 +28,18 @@ namespace BooksGrid.Core.Models
 
         public List<Book> GetBooksInStock()
         {
+            if (books == null)
+            {
+                return null;
+            }
+
             return books.Where(x => x.InStock).ToList();
+        }
+
+        public void RemoveBooksOutOfStock()
+        {
+            books = GetBooksInStock();
+            UpdateCatalog();
         }
 
         private void UpdateCatalog()
@@ -42,8 +53,8 @@ namespace BooksGrid.Core.Models
             else
             {
                 Bindings = books.Select(x => x.Binding).Distinct().ToList();
-                MinimumPrice = books.Min(x => x.Price);
-                MaximumPrice = books.Max(x => x.Price);
+                MinimumPrice = books.Count > 0 ? books.Min(x => x.Price) : 0;
+                MaximumPrice = books.Count > 0 ? books.Max(x => x.Price) : 0;
             }
         }
     }

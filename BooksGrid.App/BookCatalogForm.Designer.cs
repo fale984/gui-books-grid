@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.booksDataGridView = new System.Windows.Forms.DataGridView();
             this.bookTitleColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bookAuthorColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,6 +46,8 @@
             this.instructionsToggleLabel = new System.Windows.Forms.Label();
             this.toggleVisibleButton = new System.Windows.Forms.Button();
             this.creditsLabel = new System.Windows.Forms.Label();
+            this.deleteStockButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.booksDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -57,14 +59,14 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.booksDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.booksDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.booksDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.booksDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.booksDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.bookTitleColumn,
@@ -96,20 +98,20 @@
             // bookYearColumn
             // 
             this.bookYearColumn.DataPropertyName = "Year";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.Format = "N0";
-            dataGridViewCellStyle2.NullValue = "0";
-            this.bookYearColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle11.Format = "N0";
+            dataGridViewCellStyle11.NullValue = "0";
+            this.bookYearColumn.DefaultCellStyle = dataGridViewCellStyle11;
             this.bookYearColumn.HeaderText = "Year";
             this.bookYearColumn.Name = "bookYearColumn";
             // 
             // bookPriceColumn
             // 
             this.bookPriceColumn.DataPropertyName = "Price";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Format = "C2";
-            dataGridViewCellStyle3.NullValue = "0";
-            this.bookPriceColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle12.Format = "C2";
+            dataGridViewCellStyle12.NullValue = "0";
+            this.bookPriceColumn.DefaultCellStyle = dataGridViewCellStyle12;
             this.bookPriceColumn.HeaderText = "Price";
             this.bookPriceColumn.Name = "bookPriceColumn";
             // 
@@ -145,7 +147,7 @@
             // 
             // fileNameTextBox
             // 
-            this.fileNameTextBox.Location = new System.Drawing.Point(16, 30);
+            this.fileNameTextBox.Location = new System.Drawing.Point(16, 29);
             this.fileNameTextBox.Name = "fileNameTextBox";
             this.fileNameTextBox.ReadOnly = true;
             this.fileNameTextBox.Size = new System.Drawing.Size(478, 20);
@@ -153,7 +155,7 @@
             // 
             // selectFileButton
             // 
-            this.selectFileButton.Location = new System.Drawing.Point(500, 28);
+            this.selectFileButton.Location = new System.Drawing.Point(500, 27);
             this.selectFileButton.Name = "selectFileButton";
             this.selectFileButton.Size = new System.Drawing.Size(75, 23);
             this.selectFileButton.TabIndex = 3;
@@ -169,7 +171,7 @@
             // instructionsToggleLabel
             // 
             this.instructionsToggleLabel.AutoSize = true;
-            this.instructionsToggleLabel.Location = new System.Drawing.Point(13, 73);
+            this.instructionsToggleLabel.Location = new System.Drawing.Point(13, 63);
             this.instructionsToggleLabel.Name = "instructionsToggleLabel";
             this.instructionsToggleLabel.Size = new System.Drawing.Size(292, 13);
             this.instructionsToggleLabel.TabIndex = 4;
@@ -177,7 +179,8 @@
             // 
             // toggleVisibleButton
             // 
-            this.toggleVisibleButton.Location = new System.Drawing.Point(309, 68);
+            this.toggleVisibleButton.Enabled = false;
+            this.toggleVisibleButton.Location = new System.Drawing.Point(311, 58);
             this.toggleVisibleButton.Name = "toggleVisibleButton";
             this.toggleVisibleButton.Size = new System.Drawing.Size(131, 23);
             this.toggleVisibleButton.TabIndex = 5;
@@ -188,17 +191,39 @@
             // creditsLabel
             // 
             this.creditsLabel.AutoSize = true;
-            this.creditsLabel.Location = new System.Drawing.Point(13, 106);
+            this.creditsLabel.Location = new System.Drawing.Point(13, 116);
             this.creditsLabel.Name = "creditsLabel";
             this.creditsLabel.Size = new System.Drawing.Size(129, 13);
             this.creditsLabel.TabIndex = 6;
             this.creditsLabel.Text = "Made by Francisco Lopez";
             // 
-            // bookCatalogForm
+            // deleteStockButton
+            // 
+            this.deleteStockButton.Enabled = false;
+            this.deleteStockButton.Location = new System.Drawing.Point(311, 87);
+            this.deleteStockButton.Name = "deleteStockButton";
+            this.deleteStockButton.Size = new System.Drawing.Size(131, 23);
+            this.deleteStockButton.TabIndex = 7;
+            this.deleteStockButton.Text = "Delete out of Stock";
+            this.deleteStockButton.UseVisualStyleBackColor = true;
+            this.deleteStockButton.Click += new System.EventHandler(this.deleteStockButton_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(13, 92);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(261, 13);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "If you want to delete the books out of stock click here";
+            // 
+            // BookCatalogForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.deleteStockButton);
             this.Controls.Add(this.creditsLabel);
             this.Controls.Add(this.toggleVisibleButton);
             this.Controls.Add(this.instructionsToggleLabel);
@@ -206,7 +231,7 @@
             this.Controls.Add(this.fileNameTextBox);
             this.Controls.Add(this.openInstructionsLabel);
             this.Controls.Add(this.booksDataGridView);
-            this.Name = "bookCatalogForm";
+            this.Name = "BookCatalogForm";
             this.Text = "Book Catalog";
             ((System.ComponentModel.ISupportInitialize)(this.booksDataGridView)).EndInit();
             this.ResumeLayout(false);
@@ -231,6 +256,8 @@
         private System.Windows.Forms.Label instructionsToggleLabel;
         private System.Windows.Forms.Button toggleVisibleButton;
         private System.Windows.Forms.Label creditsLabel;
+        private System.Windows.Forms.Button deleteStockButton;
+        private System.Windows.Forms.Label label1;
     }
 }
 

@@ -92,6 +92,9 @@ namespace BooksGrid.App
                 visibleBooks = catalog.Books;
                 bookBindingColumn.DataSource = catalog.Bindings;
                 booksDataGridView.DataSource = visibleBooks;
+
+                toggleVisibleButton.Enabled = true;
+                deleteStockButton.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -117,6 +120,24 @@ namespace BooksGrid.App
             booksDataGridView.DataSource = visibleBooks;
 
             showingOutOfStock = !showingOutOfStock;
+        }
+
+        private void deleteStockButton_Click(object sender, EventArgs e)
+        {
+            catalog.RemoveBooksOutOfStock();
+
+            if (showingOutOfStock)
+            {
+                // Hide books out of stock
+                visibleBooks = catalog.GetBooksInStock(); ;
+            }
+            else
+            {
+                // Show all books
+                visibleBooks = catalog.Books;
+            }
+
+            booksDataGridView.DataSource = visibleBooks;
         }
     }
 }
