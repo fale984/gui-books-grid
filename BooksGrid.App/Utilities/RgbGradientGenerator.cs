@@ -9,6 +9,7 @@ namespace BooksGrid.App.Utilities
     /// </summary>
     public class RgbGradientGenerator : IGradientGenerator
     {
+        ///<inheritdoc cref="IGradientGenerator"/>
         public Color GetColorForValueInRange(double value, double minValue, double maxValue)
         {
             var percent = CalculatePercent(value, minValue, maxValue);
@@ -18,6 +19,7 @@ namespace BooksGrid.App.Utilities
 
         /// <summary>
         /// Returns a percentage in the range
+        /// If min equals max, return middle range
         /// </summary>
         /// <param name="value">Value to find in range</param>
         /// <param name="minValue">0% of the range</param>
@@ -25,6 +27,12 @@ namespace BooksGrid.App.Utilities
         /// <returns>Percent for the value</returns>
         public double CalculatePercent(double value, double minValue, double maxValue)
         {
+            // Avoid division / 0
+            if (minValue == maxValue)
+            {
+                return 0.5;
+            }
+
             double rangeRebased = maxValue - minValue;
             double valueRebased = value - minValue;
 

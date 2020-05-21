@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App\Utilities\RgbGradientGeneratorTests.cs" />
+    <Compile Include="Core\Managers\CsvCatalogReaderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -61,7 +62,12 @@
       <Project>{4CEB3FED-2635-46F8-9563-E854E60C928C}</Project>
       <Name>BooksGrid.App</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BooksGrid.Core\BooksGrid.Core.csproj">
+      <Project>{CC683877-CC2E-43B2-B49E-9D5EF1266220}</Project>
+      <Name>BooksGrid.Core</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

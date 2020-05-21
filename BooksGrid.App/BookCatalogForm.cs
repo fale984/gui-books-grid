@@ -1,5 +1,6 @@
 ﻿using BooksGrid.App.Resources;
 using BooksGrid.App.Utilities;
+using BooksGrid.Core.Managers;
 using BooksGrid.Core.Models;
 using System;
 using System.Collections.Generic;
@@ -16,27 +17,17 @@ namespace BooksGrid.App
     public partial class bookCatalogForm : Form
     {
         private Color highLightColor;
-
         private IGradientGenerator gradientGenerator;
-
-        private double minPrice;
-
-        private double maxPrice;
-
-        public List<Book> Books { get; set; }
-
-        public List<string> Bindings { get; set; }
+        private ICatalogReader catalogReader;
+        private Catalog catalog;
 
         public bookCatalogForm()
         {
             InitializeComponent();
             loadResources();
-            loadBooks();
 
-            bookBindingColumn.DataSource = Bindings;
-
+            catalogReader = new CsvCatalogReader();
             booksDataGridView.AutoGenerateColumns = false;
-            booksDataGridView.DataSource = Books;
         }
 
         private void loadResources()
@@ -47,16 +38,17 @@ namespace BooksGrid.App
 
         private void loadBooks()
         {
-            Books = new List<Book>
+            try
             {
-                new Book { Title="Book 1", Author="Author 1", Year=1990, Price=22.5, InStock=true, Binding="Paperback", Description="Long description 1" },
-                new Book { Title="Book 2", Author="Author 2", Year=1975, Price=9.99, InStock=false, Binding="Hardcover", Description="Long description 2" }
-            };
+                catalog = catalogReader.ReadCatalog(openBooksFileDialog.FileName);
 
-            Bindings = Books.Select(x => x.Binding).Distinct().ToList();
-
-            minPrice = Books.Min(x => x.Price);
-            maxPrice = Books.Max(x => x.Price);
+                bookBindingColumn.DataSource = catalog.Bindings;
+                booksDataGridView.DataSource = catalog.Books;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred reading the file, " + ex.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void booksDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -65,13 +57,13 @@ namespace BooksGrid.App
             if (booksDataGridView.Columns[e.ColumnIndex] is DataGridViewButtonColumn
                 && e.RowIndex != -1)
             {
-                MessageBox.Show(Books[e.RowIndex].Description, "Description");
+                MessageBox.Show(catalog.Books[e.RowIndex].Description, "Description");
             }
         }
 
         private void booksDataGridView_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
         {
-            var rowBook = Books[e.RowIndex];
+            var rowBook = catalog.Books[e.RowIndex];
             // If the book is out of stock highlight the row
             if (!rowBook.InStock)
             {
@@ -80,7 +72,16 @@ namespace BooksGrid.App
 
             // The price font color changes according to the value
             booksDataGridView.Rows[e.RowIndex].Cells[bookPriceColumn.Name].Style.ForeColor =
-                gradientGenerator.GetColorForValueInRange(rowBook.Price, minPrice, maxPrice);
+                gradientGenerator.GetColorForValueInRange(rowBook.Price, catalog.MinimumPrice, catalog.MaximumPrice);
+        }
+
+        private void selectFileButton_Click(object sender, EventArgs e)
+        {
+            if (openBooksFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                fileNameTextBox.Text = openBooksFileDialog.FileName;
+                loadBooks();
+            }
         }
     }
 }

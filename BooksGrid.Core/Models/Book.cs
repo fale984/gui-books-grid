@@ -1,5 +1,8 @@
 ﻿namespace BooksGrid.Core.Models
 {
+    /// <summary>
+    /// Contains the book data
+    /// </summary>
     public class Book
     {
         public string Title { get; set; }
@@ -15,6 +18,5 @@
         public string Binding { get; set; }
 
         public string Description { get; set; }
-
     }
 }

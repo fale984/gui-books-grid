@@ -34,6 +34,7 @@ namespace BooksGrid.Tests.App.Utilities
         [DataRow(20, 10, 30, 0.5)]
         [DataRow(21, 12, 24, 0.75)]
         [DataRow(35.9, 12.5, 35.9, 1)]
+        [DataRow(10, 10, 10, 0.5)]
         public void RgbGradientGenerator_CalculatePercent_CalculatesMultiplePercents(double value, double minValue, double maxValue, double expected)
         {
             // Arrange
