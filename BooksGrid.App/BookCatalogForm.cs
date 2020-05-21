@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace BooksGrid.App
 {
-    public partial class bookCatalogForm : Form
+    public partial class BookCatalogForm : Form
     {
         private IGradientGenerator gradientGenerator;
         private ICatalogReader catalogReader;
@@ -18,37 +18,19 @@ namespace BooksGrid.App
         private List<Book> visibleBooks;
         private bool showingOutOfStock;
 
-        public bookCatalogForm()
+        public BookCatalogForm(IGradientGenerator gradientGenerator, ICatalogReader catalogReader)
         {
-            InitializeComponent();
-            loadResources();
+            this.gradientGenerator = gradientGenerator;
+            this.catalogReader = catalogReader;
 
-            catalogReader = new CsvCatalogReader();
+            InitializeComponent();
+
             booksDataGridView.AutoGenerateColumns = false;
             showingOutOfStock = true;
-        }
-
-        private void loadResources()
-        {
             highLightColor = ColorTranslator.FromHtml(StyleResources.HighlightColor);
-            gradientGenerator = new RgbGradientGenerator();
         }
 
-        private void loadBooks()
-        {
-            try
-            {
-                catalog = catalogReader.ReadCatalog(openBooksFileDialog.FileName);
-                visibleBooks = catalog.Books;
-                bookBindingColumn.DataSource = catalog.Bindings;
-                booksDataGridView.DataSource = visibleBooks;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("An error occurred reading the file, " + ex.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
+        // Handles clicks on grid
         private void booksDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             // If the click was to display the description
@@ -72,6 +54,7 @@ namespace BooksGrid.App
             }
         }
 
+        // Handles row paint
         private void booksDataGridView_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
         {
             var rowBook = visibleBooks[e.RowIndex];
@@ -90,6 +73,7 @@ namespace BooksGrid.App
                 gradientGenerator.GetColorForValueInRange(rowBook.Price, catalog.MinimumPrice, catalog.MaximumPrice);
         }
 
+        // Handles select file
         private void selectFileButton_Click(object sender, EventArgs e)
         {
             if (openBooksFileDialog.ShowDialog() == DialogResult.OK)
@@ -99,6 +83,23 @@ namespace BooksGrid.App
             }
         }
 
+        // Loads selected file
+        private void loadBooks()
+        {
+            try
+            {
+                catalog = catalogReader.ReadCatalog(openBooksFileDialog.FileName);
+                visibleBooks = catalog.Books;
+                bookBindingColumn.DataSource = catalog.Bindings;
+                booksDataGridView.DataSource = visibleBooks;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred reading the file, " + ex.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        // Handles toggle visible click
         private void toggleVisibleButton_Click(object sender, EventArgs e)
         {
             if (showingOutOfStock)

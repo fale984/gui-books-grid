@@ -1,13 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using BooksGrid.App.Utilities;
+using BooksGrid.Core.Managers;
+using SimpleInjector;
+using System;
 using System.Windows.Forms;
 
 namespace BooksGrid.App
 {
     static class Program
     {
+        private static Container container;
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -16,7 +18,18 @@ namespace BooksGrid.App
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new bookCatalogForm());
+            Bootstrap();
+            Application.Run(container.GetInstance<BookCatalogForm>());
+        }
+
+        private static void Bootstrap()
+        {
+            container = new Container();
+
+            container.Register<IGradientGenerator, RgbGradientGenerator>();
+            container.Register<ICatalogReader, CsvCatalogReader>();
+
+            container.Verify();
         }
     }
 }

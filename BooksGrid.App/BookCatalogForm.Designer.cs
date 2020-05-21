@@ -1,6 +1,6 @@
 ﻿namespace BooksGrid.App
 {
-    partial class bookCatalogForm
+    partial class BookCatalogForm
     {
         /// <summary>
         /// Required designer variable.
