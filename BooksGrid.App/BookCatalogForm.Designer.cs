@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.booksDataGridView = new System.Windows.Forms.DataGridView();
             this.bookTitleColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bookAuthorColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,6 +43,9 @@
             this.fileNameTextBox = new System.Windows.Forms.TextBox();
             this.selectFileButton = new System.Windows.Forms.Button();
             this.openBooksFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.instructionsToggleLabel = new System.Windows.Forms.Label();
+            this.toggleVisibleButton = new System.Windows.Forms.Button();
+            this.creditsLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.booksDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,14 +57,14 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.booksDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.booksDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.booksDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.booksDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.booksDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.bookTitleColumn,
@@ -71,9 +74,9 @@
             this.bookInStockColumn,
             this.bookBindingColumn,
             this.bookDescriptionColumn});
-            this.booksDataGridView.Location = new System.Drawing.Point(12, 161);
+            this.booksDataGridView.Location = new System.Drawing.Point(12, 144);
             this.booksDataGridView.Name = "booksDataGridView";
-            this.booksDataGridView.Size = new System.Drawing.Size(760, 388);
+            this.booksDataGridView.Size = new System.Drawing.Size(760, 405);
             this.booksDataGridView.TabIndex = 0;
             this.booksDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.booksDataGridView_CellContentClick);
             this.booksDataGridView.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.booksDataGridView_RowPrePaint);
@@ -93,20 +96,20 @@
             // bookYearColumn
             // 
             this.bookYearColumn.DataPropertyName = "Year";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle8.Format = "N0";
-            dataGridViewCellStyle8.NullValue = "0";
-            this.bookYearColumn.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "N0";
+            dataGridViewCellStyle2.NullValue = "0";
+            this.bookYearColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.bookYearColumn.HeaderText = "Year";
             this.bookYearColumn.Name = "bookYearColumn";
             // 
             // bookPriceColumn
             // 
             this.bookPriceColumn.DataPropertyName = "Price";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle9.Format = "C2";
-            dataGridViewCellStyle9.NullValue = "0";
-            this.bookPriceColumn.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "C2";
+            dataGridViewCellStyle3.NullValue = "0";
+            this.bookPriceColumn.DefaultCellStyle = dataGridViewCellStyle3;
             this.bookPriceColumn.HeaderText = "Price";
             this.bookPriceColumn.Name = "bookPriceColumn";
             // 
@@ -144,6 +147,7 @@
             // 
             this.fileNameTextBox.Location = new System.Drawing.Point(16, 30);
             this.fileNameTextBox.Name = "fileNameTextBox";
+            this.fileNameTextBox.ReadOnly = true;
             this.fileNameTextBox.Size = new System.Drawing.Size(478, 20);
             this.fileNameTextBox.TabIndex = 2;
             // 
@@ -162,11 +166,42 @@
             this.openBooksFileDialog.Filter = "CSV files (*.csv)|*.csv|Text files (*.txt)|*.txt|All files (*.*)|*.*";
             this.openBooksFileDialog.Title = "Open catalog";
             // 
+            // instructionsToggleLabel
+            // 
+            this.instructionsToggleLabel.AutoSize = true;
+            this.instructionsToggleLabel.Location = new System.Drawing.Point(13, 73);
+            this.instructionsToggleLabel.Name = "instructionsToggleLabel";
+            this.instructionsToggleLabel.Size = new System.Drawing.Size(292, 13);
+            this.instructionsToggleLabel.TabIndex = 4;
+            this.instructionsToggleLabel.Text = "If you want to hide or show the books out of stock click here";
+            // 
+            // toggleVisibleButton
+            // 
+            this.toggleVisibleButton.Location = new System.Drawing.Point(309, 68);
+            this.toggleVisibleButton.Name = "toggleVisibleButton";
+            this.toggleVisibleButton.Size = new System.Drawing.Size(131, 23);
+            this.toggleVisibleButton.TabIndex = 5;
+            this.toggleVisibleButton.Text = "Hide out of Stock";
+            this.toggleVisibleButton.UseVisualStyleBackColor = true;
+            this.toggleVisibleButton.Click += new System.EventHandler(this.toggleVisibleButton_Click);
+            // 
+            // creditsLabel
+            // 
+            this.creditsLabel.AutoSize = true;
+            this.creditsLabel.Location = new System.Drawing.Point(13, 106);
+            this.creditsLabel.Name = "creditsLabel";
+            this.creditsLabel.Size = new System.Drawing.Size(129, 13);
+            this.creditsLabel.TabIndex = 6;
+            this.creditsLabel.Text = "Made by Francisco Lopez";
+            // 
             // bookCatalogForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.creditsLabel);
+            this.Controls.Add(this.toggleVisibleButton);
+            this.Controls.Add(this.instructionsToggleLabel);
             this.Controls.Add(this.selectFileButton);
             this.Controls.Add(this.fileNameTextBox);
             this.Controls.Add(this.openInstructionsLabel);
@@ -193,6 +228,9 @@
         private System.Windows.Forms.TextBox fileNameTextBox;
         private System.Windows.Forms.Button selectFileButton;
         private System.Windows.Forms.OpenFileDialog openBooksFileDialog;
+        private System.Windows.Forms.Label instructionsToggleLabel;
+        private System.Windows.Forms.Button toggleVisibleButton;
+        private System.Windows.Forms.Label creditsLabel;
     }
 }
 

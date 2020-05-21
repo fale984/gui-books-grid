@@ -26,6 +26,11 @@ namespace BooksGrid.Core.Models
 
         public double MaximumPrice { get; private set; }
 
+        public List<Book> GetBooksInStock()
+        {
+            return books.Where(x => x.InStock).ToList();
+        }
+
         private void UpdateCatalog()
         {
             if (books == null)
