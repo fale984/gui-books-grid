@@ -1,4 +1,6 @@
-﻿using BooksGrid.Core.Models;
+﻿using BooksGrid.App.Resources;
+using BooksGrid.App.Utilities;
+using BooksGrid.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +15,14 @@ namespace BooksGrid.App
 {
     public partial class bookCatalogForm : Form
     {
+        private Color highLightColor;
+
+        private IGradientGenerator gradientGenerator;
+
+        private double minPrice;
+
+        private double maxPrice;
+
         public List<Book> Books { get; set; }
 
         public List<string> Bindings { get; set; }
@@ -20,7 +30,8 @@ namespace BooksGrid.App
         public bookCatalogForm()
         {
             InitializeComponent();
-            LoadBooks();
+            loadResources();
+            loadBooks();
 
             bookBindingColumn.DataSource = Bindings;
 
@@ -28,7 +39,13 @@ namespace BooksGrid.App
             booksDataGridView.DataSource = Books;
         }
 
-        private void LoadBooks()
+        private void loadResources()
+        {
+            highLightColor = ColorTranslator.FromHtml(StyleResources.HighlightColor);
+            gradientGenerator = new RgbGradientGenerator();
+        }
+
+        private void loadBooks()
         {
             Books = new List<Book>
             {
@@ -37,6 +54,9 @@ namespace BooksGrid.App
             };
 
             Bindings = Books.Select(x => x.Binding).Distinct().ToList();
+
+            minPrice = Books.Min(x => x.Price);
+            maxPrice = Books.Max(x => x.Price);
         }
 
         private void booksDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -45,9 +65,22 @@ namespace BooksGrid.App
             if (booksDataGridView.Columns[e.ColumnIndex] is DataGridViewButtonColumn
                 && e.RowIndex != -1)
             {
-                var rowBook = Books[e.RowIndex];
-                MessageBox.Show(rowBook.Description, "Description");
+                MessageBox.Show(Books[e.RowIndex].Description, "Description");
             }
+        }
+
+        private void booksDataGridView_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            var rowBook = Books[e.RowIndex];
+            // If the book is out of stock highlight the row
+            if (!rowBook.InStock)
+            {
+                booksDataGridView.Rows[e.RowIndex].DefaultCellStyle.BackColor = highLightColor;
+            }
+
+            // The price font color changes according to the value
+            booksDataGridView.Rows[e.RowIndex].Cells[bookPriceColumn.Name].Style.ForeColor =
+                gradientGenerator.GetColorForValueInRange(rowBook.Price, minPrice, maxPrice);
         }
     }
 }
